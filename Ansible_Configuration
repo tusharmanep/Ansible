@@ -1,0 +1,9 @@
+Control node requirements:-(Master)
+For your control node (the machine that runs Ansible), you can use nearly any UNIX-like machine with Python installed. This includes Red Hat, Debian, Ubuntu, macOS, BSDs, and Windows under a Windows Subsystem for Linux (WSL) distribution. Windows without WSL is not natively supported as a control node; see Matt Davis’ blog post for more information.
+
+Managed node requirements:-(Clients)
+The managed node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python to run Ansible-generated Python code. The managed node also needs a user account that can connect through SSH to the node with an interactive POSIX shell.
+
+Step1:-Install Ansible setup 
+yum install ansible
+
