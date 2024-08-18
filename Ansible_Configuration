@@ -27,31 +27,31 @@ Add IP / Hostnames to /etc/ansible/hosts file, As per saggrigation Application a
 
 Example
 [Ansible_server]
-192.168.1.107
+node0
 
 [APP]
-192.168.1.106
+noed1
 
 [DB]
-192.168.1.108
+node2
 =======================================================================================================
 Command for check all hosts are able to ping or not:-
 #ansible all -m ping
-XXX | SUCCESS => {
+node0 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
     "changed": false,
     "ping": "pong"
 }
-XXX | SUCCESS => {
+node1 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
     "changed": false,
     "ping": "pong"
 }
-XXX | SUCCESS => {
+node2 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
@@ -61,7 +61,7 @@ XXX | SUCCESS => {
 ----------------------------------------------------------------------
 Command for spacific Applicatipon host ping test
 #[root@node0 .ssh]# ansible APP -m ping
-192.168.1.106 | SUCCESS => {
+node1 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
@@ -71,7 +71,7 @@ Command for spacific Applicatipon host ping test
 -------------------------------------------------------------------------
 Ping only Ansible Control node itselfs:-
 [root@node0 .ssh]# ansible Ansible_server -m ping
-192.168.1.107 | SUCCESS => {
+node0 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
