@@ -4,6 +4,79 @@ For your control node (the machine that runs Ansible), you can use nearly any UN
 Managed node requirements:-(Clients)
 The managed node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python to run Ansible-generated Python code. The managed node also needs a user account that can connect through SSH to the node with an interactive POSIX shell.
 
-Step1:-Install Ansible setup 
-yum install ansible
+Step1:-Install Ansible setup / Install EPEL repository
+• yum install ansible
+• yum -y install epel-release
+• yum update
+• yum -y install ansible openss
+===========================================================================
+Setup password less authontication between LINUX/UNIX servers
+EX we are having 3 server.
+1)server1 (node0)
+2)server2 (node1)
+3)Server3 (node3)
+
+Step1:- Genrate public keys on eavery server.
+#ssh-keygen     (node0,node1,node2)
+#cd .ssh
+#cat id_rsa.pub >>authorized_keys   ---- Alos copy other 2 nodes Public key in this file.
+Try password less ssh to all nodes.
+
+==============================================================================
+Add IP / Hostnames to /etc/ansible/hosts file, As per saggrigation Application and DB servers
+
+Example
+[Ansible_server]
+192.168.1.107
+
+[APP]
+192.168.1.106
+
+[DB]
+192.168.1.108
+=======================================================================================================
+Command for check all hosts are able to ping or not:-
+#ansible all -m ping
+XXX | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+XXX | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+XXX | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+----------------------------------------------------------------------
+Command for spacific Applicatipon host ping test
+#[root@node0 .ssh]# ansible APP -m ping
+192.168.1.106 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+-------------------------------------------------------------------------
+Ping only Ansible Control node itselfs:-
+[root@node0 .ssh]# ansible Ansible_server -m ping
+192.168.1.107 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+==============================================================================================
 
