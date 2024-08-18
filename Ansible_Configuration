@@ -34,7 +34,7 @@ noed1
 
 [DB]
 node2
-=======================================================================================================
+====================Ping command (For every unix shell command mention -m)===================================================
 Command for check all hosts are able to ping or not:-
 #ansible all -m ping
 node0 | SUCCESS => {
