@@ -18,7 +18,7 @@ EX we are having 3 server.
 
 Step1:- Genrate public keys on eavery server.
 #ssh-keygen     (node0,node1,node2)
-#cd .ssh
+#cd .ssh     or cat .ssh/id_rsa.pub >> authorized_key
 #cat id_rsa.pub >>authorized_keys   ---- Alos copy other 2 nodes Public key in this file.
 Try password less ssh to all nodes.
 
@@ -34,7 +34,7 @@ noed1
 
 [DB]
 node2
-====================Ping command (For every unix shell command mention -m)===================================================
+====================Ping command (For every unix shell Action use flag -m)===================================================
 Command for check all hosts are able to ping or not:-
 #ansible all -m ping
 node0 | SUCCESS => {
@@ -79,4 +79,15 @@ node0 | SUCCESS => {
     "ping": "pong"
 }
 ==============================================================================================
+Play book is an script in Ansible which we are storing using .yml format
 
+Example:=
+#vi appache_install.yml
+hosts: APP 
+become: yes 
+tasks:
+- name: install apache
+yum: name=httpd state=latest
+
+#chmod 755 appache_install.yml         -----Change permision to executable
+#ansible-playbook appache_install.yml
