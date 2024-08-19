@@ -82,12 +82,30 @@ node0 | SUCCESS => {
 Play book is an script in Ansible which we are storing using .yml format
 
 Example:=
-#vi appache_install.yml
-hosts: APP 
-become: yes 
-tasks:
-- name: install apache
-yum: name=httpd state=latest
-
+#cat appache_install.yml
+- hosts: APP
+  become: yes
+  tasks:
+        - name: Insure appache is installed.
+          yum:
+            name: httpd
+            state: latest
 #chmod 755 appache_install.yml         -----Change permision to executable
-#ansible-playbook appache_install.yml
+[root@node0 tmp]# ansible-playbook appache_install.yml      ------ Run Ansible yml script using #ansible-playbook <Script-Name>
+
+PLAY [APP] ******************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+ok: [node1]
+
+TASK [Insure appache is installed.] *****************************************************************************************************
+changed: [node1]
+
+PLAY RECAP ******************************************************************************************************************************
+node1              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+=====================================================================================================================================================
+
+
+
