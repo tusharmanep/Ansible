@@ -1,0 +1,7 @@
+- hosts: APP
+  become: yes
+  tasks:
+        - name: Insure appache is installed.
+          yum:
+            name: httpd
+            state: latest
